@@ -1,0 +1,13 @@
+#! /bin/bash
+
+# Ensure assets directory exists and is empty
+mkdir -p public/assets && rm -rf public/assets/*
+
+# Ensure styles directory exists within public/assets
+mkdir -p public/assets/styles
+
+if [ ! -z $NODE_ENV ] && [ $NODE_ENV = "production" ]; then
+  echo "dist mode"
+else
+  echo "dev mode"
+fi

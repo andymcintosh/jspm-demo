@@ -1,0 +1,15 @@
+#! /bin/bash
+
+if [ -z $NODE_ENV ] || [ $NODE_ENV = "development" ]; then
+  
+  # Copy the entire vendor directory into public/assets
+  cp -rf app/vendor public/assets
+  
+  # Copy the jspm config file into public/assets
+  cp app/config.js public/assets
+  
+  # Bundle all of our dependencies (this speeds up dev since these libraries
+  # don't need built or fetched every time)
+  jspm bundle babel + main - [**/*] --skip-source-maps public/assets/vendor.js
+  
+fi

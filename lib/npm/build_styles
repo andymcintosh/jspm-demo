@@ -1,0 +1,6 @@
+#! /bin/bash
+if [ ! -z $NODE_ENV ] && [ $NODE_ENV = "production" ]; then
+  node-sass app/styles/main.sass >  public/assets/styles/app.css --output-style compressed
+else
+  node-sass app/styles/main.sass >  public/assets/styles/app.css
+fi

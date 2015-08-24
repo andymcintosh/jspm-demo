@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>JSPM Production Workflow Demo</title>
+    <script src="//localhost:9090/livereload.js"></script>
+    <script src="assets/vendor/system.src.js"></script>
+    <script>
+      System.config({
+        "baseURL": "assets/"
+      })
+    </script>
+    <script src="assets/config.js"></script>
+    <script src="assets/vendor.js" charset="utf-8"></script>
+    <script>
+      System.import('main');
+    </script>
+    <link rel="stylesheet" href="assets/styles/app.css" media="screen" charset="utf-8">
+  </head>
+  <body>
+    <h1>JSPM Production Workflow Demo</h1>
+    <p>(open your console for output)</p>
+  </body>
+</html>

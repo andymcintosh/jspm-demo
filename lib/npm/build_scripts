@@ -1,0 +1,12 @@
+#! /bin/bash
+if [ ! -z $NODE_ENV ] && [ $NODE_ENV = "production" ]; then
+  
+  # Build a bundle of all dependencies and application code
+  jspm bundle-sfx main --minify --skip-source-maps public/assets/scripts/app.js
+  
+else
+  
+  # Copy the entire scripts directory into public/assets
+  rsync -a app/scripts public/assets
+  
+fi
