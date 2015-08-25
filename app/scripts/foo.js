@@ -10,8 +10,11 @@ export default class Foo {
   }
   
   crank() {
-    let compiled = _.template('hello <%= user %>!');
-    console.log(compiled({'user': 'fred'}));
+    setTimeout(() => {
+      let compiled = _.template('hello <%= user %>!');
+      console.log(compiled({'user': 'fred'}));
+      this.crank()
+    }, 1000)
   }
   
 }

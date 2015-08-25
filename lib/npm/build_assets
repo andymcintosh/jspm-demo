@@ -1,0 +1,4 @@
+#! /bin/bash
+
+# Copy contents of app/assets to public/assets
+rsync -a app/assets/ public/assets

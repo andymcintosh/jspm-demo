@@ -18,19 +18,25 @@
   },
   "scripts": {
     "clean": "lib/npm/clean",
+    "build:assets": "lib/npm/build_assets",
     "build:vendor": "lib/npm/build_vendor",
     "build:scripts": "lib/npm/build_scripts",
     "build:styles": "lib/npm/build_styles",
-    "build": "npm run build:vendor && npm run build:scripts && npm run build:styles",
+    "build": "npm run build:assets && npm run build:vendor && npm run build:scripts && npm run build:styles",
+    "watch:assets": "watch 'npm run build:assets -s' app/assets",
     "watch:scripts": "watch 'npm run build:scripts -s' app/scripts",
     "watch:styles": "watch 'npm run build:styles -s' app/styles",
-    "watch": "parallelshell 'npm run watch:scripts -s' 'npm run watch:styles'",
+    "watch": "parallelshell 'npm run watch:scripts -s' 'npm run watch:styles' 'npm run watch:assets'",
     "live-reload": "live-reload public/assets",
     "serve": "http-server public",
+    "fingerprint-assets": "lib/npm/fingerprint_assets",
     "dev": "export NODE_ENV=development && npm run clean && npm run build:vendor && parallelshell 'npm run watch -s' 'npm run live-reload' 'npm run serve'",
-    "dist": "export NODE_ENV=production && npm run clean && npm run build"
+    "dist": "export NODE_ENV=production && npm run clean && npm run build",
+    "postdist": "npm run fingerprint-assets -s"
   },
   "devDependencies": {
+    "glob": "^5.0.14",
+    "hashmark": "^3.0.0",
     "http-server": "^0.8.0",
     "live-reload": "^1.1.0",
     "node-sass": "^3.2.0",

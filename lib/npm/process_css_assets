@@ -1,0 +1,22 @@
+#! /usr/local/bin/node
+
+var fs = require('fs')
+var glob = require('glob')
+var path = require('path')
+var manifest = require('../../public/assets/manifest')
+glob('public/assets/styles/app.*.css', function(err, file) {
+  fs.readFile(file[0], 'utf8', function (err, data) {
+    if (err) {
+      return console.log(err);
+    }
+    function fart(match, dir, name, ext) {
+      var url = [dir, name, ext].join('')
+      return "/assets/" + manifest[url];
+    }
+    var result = data.replace(/\/assets\/((?:\w+\/)+)(\w+)(\.(png|jpg|eot|ttf|woff[2]?))/g, fart)
+    
+    fs.writeFile(file[0], result, 'utf8', function (err) {
+       if (err) return console.log(err);
+    });
+  });
+})

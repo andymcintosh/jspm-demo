@@ -1,0 +1,9 @@
+#! /bin/bash
+
+# Hash all assets in the public/assets directory and create a manifest
+(cd public/assets && hashmark -l 8 -r --asset-map manifest.json '**/*.{js,css,jpg,mp4,eot,ttf,woff,woff2}' '{dir}/{name}.{hash}{ext}')
+
+# Run node script to replace all refences to assets with fingerprinted version
+# from the manifest
+
+lib/npm/process_css_assets
